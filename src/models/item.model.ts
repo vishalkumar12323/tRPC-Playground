@@ -2,7 +2,7 @@ import { z } from "zod";
 
 
 const itemModel = z.object({
-    id: z.string().optional(),
+    id: z.string(),
     title: z.string()
 });
 
