@@ -3,7 +3,7 @@ import { z } from "zod";
 
 const itemModel = z.object({
     id: z.string().optional(),
-    name: z.string()
+    title: z.string()
 });
 
 export const ItemResponseOutput = z.object({

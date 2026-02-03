@@ -13,12 +13,25 @@ export const appRouter = router({
                 items
             }
         }),
-    // getItemById: publicProcedure
-    //     .input()
-    //     .output()
-    //     .query(() => {
 
-    //     })
+    createItem: publicProcedure
+        .input(z.object({ title: z.string() }))
+        .output(z.object({
+            id: z.string().optional(),
+            title: z.string()
+        }))
+        .mutation((options) => {
+            const { input } = options;
+            const item = db.items.create(input);
+            return item;
+        }),
+    getItemById: publicProcedure
+        .input(z.object({ itemId: z.string() }))
+        .output(z.object({ id: z.string().optional(), title: z.string() }))
+        .query((options) => {
+            const { input } = options;
+            return db.items.getItemById(input.itemId);
+        })
 });
 
 export type AppRouter = typeof appRouter;
